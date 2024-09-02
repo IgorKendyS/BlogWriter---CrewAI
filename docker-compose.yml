@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  crewai-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crewai-api
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.crewai-api.rule=Host(`crewai.example.com`)
+      - traefik.http.routers.crewai-api.entrypoints=web,websecure
+      - traefik.http.routers.crewai-api.tls=true
+      - traefik.http.routers.crewai-api.tls.certresolver=leresolver
+    networks:
+      - crewai-api
+
+networks:
+  crewai-api:
+    external: true

@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "blogwriter"
+version = "0.1.0"
+description = "BlogWriter using crewAI"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+crewai = { extras = ["tools"], version = "^0.51.0" }
+groq = "^0.10.0"
+
+[tool.poetry.scripts]
+blogwriter = "blogwriter.main:run"
+run_crew = "blogwriter.main:run"
+train = "blogwriter.main:train"
+replay = "blogwriter.main:replay"
+test = "blogwriter.main:test"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

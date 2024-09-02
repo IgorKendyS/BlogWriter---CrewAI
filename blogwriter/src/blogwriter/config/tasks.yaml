@@ -1,0 +1,52 @@
+definir_parametros_task:
+  description: >
+    Definir os parâmetros iniciais para o artigo sobre '{topic}', incluindo título, palavra-chave, objetivo, público-alvo, estilo de escrita e tom.
+    Utilize listas predefinidas ou critérios automáticos baseados no tema selecionado.
+  expected_output: >
+    Um conjunto de cinco títulos sugeridos, objetivo principal, público-alvo, estilo de escrita e tom para o artigo.
+  agent: agente_planejador_de_conteudo
+
+otimizacao_seo_task:
+  description: >
+    Revisar e otimizar títulos e palavras-chave para garantir máxima visibilidade e performance de SEO.
+    Certifique-se de que a palavra-chave apareça em uma densidade de 1% ao longo do texto e que os títulos estejam otimizados.
+  expected_output: >
+    Títulos otimizados para SEO e um relatório com sugestões de melhorias para a distribuição de palavras-chave no artigo.
+  agent: estrategista_seo
+
+criacao_conteudo_task:
+  description: >
+    Escrever o artigo completo com base nos títulos e diretrizes definidas. 
+    Incluir uma introdução de três parágrafos, um corpo de 3.000 palavras estruturado em seções claras e uma conclusão.
+    Garantir que o conteúdo seja 100% único, envolvente e otimizado para SEO.
+  expected_output: >
+    Um artigo completo de 3.000 palavras com introdução, corpo principal (dividido em seções com subtítulos), e conclusão.
+    Todo o conteúdo deve ser otimizado para SEO e escrito em linguagem natural.
+  agent: escritor_de_conteudo
+
+revisao_qualidade_task:
+  description: >
+    Revisar o artigo completo para garantir clareza, coerência, correção gramatical e aderência às diretrizes de SEO.
+    Sugerir melhorias onde necessário para aumentar a legibilidade e a qualidade do texto.
+  expected_output: >
+    Artigo revisado com comentários e sugestões de ajustes.
+    Versão final pronta para publicação, com erros corrigidos e melhorias implementadas.
+  agent: revisor_qualidade_coerencia
+
+criacao_faq_task:
+  description: >
+    Criar uma seção de perguntas frequentes (FAQs) com base em perguntas comuns relacionadas ao tema e à palavra-chave do artigo.
+    Realizar pesquisas para identificar as questões mais relevantes e fornecer respostas detalhadas e informativas.
+  expected_output: >
+    Uma seção de FAQs contendo pelo menos 5 perguntas e respostas relacionadas ao tema do artigo.
+    Formatar cada pergunta como um subtítulo (H3) e as respostas como parágrafos.
+  agent: especialista_faq_dados_complementares
+
+compilacao_revisao_final_task:
+  description: >
+    Compilar todas as partes do artigo, incluindo o texto principal e as FAQs. Realizar uma revisão final para assegurar consistência, clareza e qualidade.
+    Preparar o artigo para publicação e garantir que todas as diretrizes tenham sido seguidas.
+  expected_output: >
+    Artigo completo e revisado, pronto para publicação, incluindo seção de FAQs.
+    Documento final deve estar formatado corretamente e ser coerente, sem erros ou inconsistências.
+  agent: agente_lider
