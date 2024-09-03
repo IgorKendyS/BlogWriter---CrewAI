@@ -1,32 +1,69 @@
-from flask import Flask, request, jsonify
+import sys
 from blogwriter.crew import BlogwriterCrew
 
-app = Flask(__name__)
+def run():
+    """
+    Run the crew with dynamic input from the user for the article topic.
+    """
+    # Solicitar o assunto do artigo ao usuário
+    assunto = input("Por favor, insira o assunto do artigo: ")
 
-@app.route('/generate_article', methods=['POST'])
-def generate_article():
+    # Configurar as entradas para o crew com base no assunto fornecido
+    inputs = {
+        'topic': assunto
+    }
+    
     try:
-        # Pega o 'topic' do corpo da requisição POST
-        data = request.get_json()
-        topic = data.get('topic')
-
-        if not topic:
-            return jsonify({"error": "Por favor, forneça um tópico no campo 'topic'."}), 400
-
-        # Configura as entradas para o crew com base no tópico fornecido
-        inputs = {
-            'topic': topic
-        }
-
-        # Inicializa o crew e executa com as entradas fornecidas
+        # Inicializar o crew e executar com as entradas fornecidas
         crew_instance = BlogwriterCrew()
         result = crew_instance.crew().kickoff(inputs=inputs)
+        
+        # Salvar o resultado em um arquivo .txt
+        with open('resultado_artigo.txt', 'w', encoding='utf-8') as file:
+            file.write(str(result))
 
-        # Retorna o resultado como resposta JSON
-        return jsonify({"result": str(result)})
+        print("Artigo salvo em 'resultado_artigo.txt'")
+    except Exception as e:
+        print(f"Ocorreu um erro durante a execução: {e}")
+
+
+
+
+def train():
+    """
+    Train the crew for a given number of iterations.
+    """
+    inputs = {
+        "topic": "AI LLMs"
+    }
+    try:
+        BlogwriterCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        raise Exception(f"An error occurred while training the crew: {e}")
+
+def replay():
+    """
+    Replay the crew execution from a specific task.
+    """
+    try:
+        BlogwriterCrew().crew().replay(task_id=sys.argv[1])
+
+    except Exception as e:
+        raise Exception(f"An error occurred while replaying the crew: {e}")
+
+def test():
+    """
+    Test the crew execution and returns the results.
+    """
+    inputs = {
+        "topic": "AI LLMs"
+    }
+    try:
+        BlogwriterCrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+
+    except Exception as e:
+        raise Exception(f"An error occurred while replaying the crew: {e}")
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    run()

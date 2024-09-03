@@ -1,2 +1,6 @@
 .venv
 __pycache__/
+Dockerfile
+estrutura.txt
+requirements.txt
+run_parallel.py
